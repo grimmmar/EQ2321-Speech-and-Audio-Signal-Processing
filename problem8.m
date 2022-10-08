@@ -1,0 +1,20 @@
+clc;
+clear;
+load assignment1.mat;
+x = male_long;
+N = length(x);
+alen=256;
+ulen=128;
+M = 10;
+naf = floor((N-alen+ulen)/ulen);
+[E,ZC,V,A,P] = analysis(x,alen,ulen,M);
+
+output1 = synthesis1(E, ZC, V, A, P, ulen);
+output2 = synthesis2(E, ZC, V, A, P, ulen);
+output3 = synthesis3(E, ZC, V, A, P, ulen);
+output4 = synthesis4(E, ZC, V, A, P, ulen);
+save('output1.mat','output1');
+save('output2.mat','output2');
+save('output3.mat','output3');
+save('output4.mat','output4');
+audiowrite('output4.wav',output4,8000);
